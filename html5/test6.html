@@ -1,0 +1,133 @@
+<html>
+<head>
+  <title>test6.</title>
+</head>
+<body>
+<p><br/></p>
+  <h2>표 연습</h2>
+  <hr/>
+  <h3>1.길동이네 가족소개</h3>
+  <table border>            <!-- 1행1열테이블 -->
+    <tr>
+      <td>관계</td>        
+      <td>성명</td>
+      <td>나이</td>        <!-- 1행3열테이블 -->
+    </tr>
+    <tr>
+      <td>아버지</td>
+      <td>홍장군</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <td>어머니</td>
+      <td>김말숙</td>
+      <td>58</td>        
+    </tr>
+  </table>
+  <hr/>
+  <!-- <h3 align="center">2.길동이네 가족소개</h3> -->
+  <h3>2.길동이네 가족소개</h3>
+  <table border width="400px" height="300px" align="center">        
+    <caption><font size="5"><b>길동이네 가족소개</b></font></caption>        <!-- 소개하는 명령어 caption 캡션 을 입력한다!! -->
+    <tr>
+      <td>관계</td>        
+      <td align="center">성명</td>     <!-- 정렬하고픈 라인을 포함하고 있는데 얼라인align을 입력한다! -->
+      <td>나이</td>        
+    </tr>
+    <tr align="center">     <!-- 전부 정렬할라면 위에 포함하고있는데 입력한다! -->
+      <td>아버지</td>
+      <td>홍장군</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <td>어머니</td>
+      <td>김말숙</td>
+      <td>58</td>        
+    </tr>
+  </table>
+  <hr/>
+  <h3>3.길동이네 가족소개</h3>
+  <table bborder="10" cellpadding="20px" cellspacing="6px">    <!-- border cellpadding="10px"글자를 기준으로 안쪽 여백을주는명령어는 페링padding 이라고한다! -->       
+    <tr bgcolor="skyblue">
+      <td>관계</td>        
+      <td>성명</td>
+      <td>나이</td>        
+    </tr>
+    <tr>
+      <td><font color="#00f"><b>아버지</b></font></td>
+      <td bgcolor="#ff0">홍장군</td>  <!-- 배경은 bgcolor비지컬러이다! -->
+      <td>62</td>
+    </tr>
+    <tr>
+      <td>어머니</td>
+      <td>김말숙</td>
+      <td>58</td>       
+    </tr>
+  </table>
+  <hr/>
+  <h3>4.길동이네 가족소개</h3>
+  <table border="0px" cellpadding="20px" cellspacing="0px">           
+    <tr bgcolor="pink">
+      <td>관계</td>        
+      <td>성명</td>
+      <td>나이</td>        
+    </tr>
+    <tr bgcolor="green">
+      <td>아버지</td>
+      <td>홍장군</td>
+      <td>62</td>
+    </tr>
+    <tr bgcolor="brown">
+      <td><font color="#fff">어머니</font></td>
+      <td><font color="#fff">김말숙</font></td>
+      <td><font color="#fff">58</font></td>        
+    </tr>
+  </table>
+  <hr/>
+  <h3>5.길동이네 가족소개</h3>
+  <table border="1" cellspacing="0" cellpadding="10px">            
+    <tr vgcolor="green">
+      <td><font color="#fff">관계</font></td>        
+      <td colspan="2" align="center"><font color="#fff">비고</font></td>         <!-- 열 셀을 합치고싶으면 압칠라는 시작위치! -->
+     <!-- <td>나이</td> -->         <!-- 합칠려면 가운데를 지워야 한다! -->
+    </tr>
+    <tr>
+      <td rowspan="2">부모</td>         <!-- 행을 합치고싶으면 rowspan로우팬을 명령어로 한다! -->
+      <td>홍장군</td>
+      <td>62</td>
+    </tr>
+    <tr>
+     <!-- <td>어머니</td> -->
+      <td>김말숙</td>
+      <td>58</td>        
+    </tr>
+  </table>
+  <hr/>
+  <h3>6.길동이네 가족소개</h3>
+  <table border="1" cellpadding="10px" cellspacing="0">           
+    <tr align="center">
+      <td>관계</td>        
+      <td>성명</td>
+      <td>나이</td>        
+      <td>가족사진</td>        
+    </tr>
+    <tr align="center">
+      <td>아버지</td>
+      <td>홍장군</td>
+      <td>62</td>
+      <td rowspan="2"><ing src=".../images/14.jpg" width="150px"/></td>
+    </tr>
+    <tr align="center">
+      <td>어머니</td>
+      <td>김말숙</td>
+      <td>58</td>        
+    </tr>
+    <tr>
+      <td colspan="4" height="350px" background="../images/21.jpg"></td>
+    </tr>
+  </table>
+  <hr/>
+<p><br/></p>
+</body>
+</html>
+
