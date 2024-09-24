@@ -30,13 +30,14 @@
   <table border width="400px" height="300px" align="center">        
     <caption><font size="5"><b>길동이네 가족소개</b></font></caption>        <!-- 소개하는 명령어 caption 캡션 을 입력한다!! -->
     <tr>
-      <td>관계</td>        
-      <td align="center">성명</td>     <!-- 정렬하고픈 라인을 포함하고 있는데 얼라인align을 입력한다! -->
-      <td>나이</td>        
+      <th>관계</th>        
+    <!--  <td align="center">성명</td>   -->  <!-- 정렬하고픈 라인을 포함하고 있는데 얼라인align을 입력한다! -->
+      <th>성명</th>
+      <th>나이</th>        
     </tr>
     <tr align="center">     <!-- 전부 정렬할라면 위에 포함하고있는데 입력한다! -->
       <td>아버지</td>
-      <td>홍장군</td>
+      <td><mark>홍장군</mark></td>
       <td>62</td>
     </tr>
     <tr>
@@ -48,11 +49,13 @@
   <hr/>
   <h3>3.길동이네 가족소개</h3>
   <table bborder="10" cellpadding="20px" cellspacing="6px">    <!-- border cellpadding="10px"글자를 기준으로 안쪽 여백을주는명령어는 페링padding 이라고한다! -->       
-    <tr bgcolor="skyblue">
-      <td>관계</td>        
-      <td>성명</td>
-      <td>나이</td>        
-    </tr>
+    <thead>
+      <tr bgcolor="skyblue">
+        <td>관계</td>        
+        <td>성명</td>
+        <td>나이</td>        
+      </tr>
+    </thead>
     <tr>
       <td><font color="#00f"><b>아버지</b></font></td>
       <td bgcolor="#ff0">홍장군</td>  <!-- 배경은 bgcolor비지컬러이다! -->
