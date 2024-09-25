@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>t17.html(table테이블 응용)</title>
+  <style>
+    table {     
+/* 테이블 선 긋기
+      width: 300px;
+      height: 250px; */
+      /* margin: 50px; 마진도 패링이랑 똑같이 시개방향으로 간다! */
+      margin: 50px 0px; 
+      border-collapse: collapse; /* 안쪽선 간격 없애기 */
+    }
+    th, td {
+      border: 1px solid gray;
+      text-align: center;   /* 가운데정렬 */
+      /* padding: 10px; */
+      /* padding: 10px 20px; 2개 하면 가로 세로 각각 된다! */
+      /* padding: 10px 20px 30px; 3개하면 시개방향으로 돌기 때문에 아래가 된다! */
+      padding: 10px 20px 30px 40px;
+    }
+    th {
+      background-color: burlywood;
+    }
+    .tr3 {
+      background-color: chocolate;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h2>테이블에 스타일 적용연습</h2>
+  <table>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+  </table>
+  <hr/>
+  <h2>테이블에 스타일 적용연습2</h2>
+  <table>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+    </tr>
+    <tr class="tr3">
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+  </table>
+  <hr/>
+</body>
+</html>
