@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title   title>ex1_calculation.html</title>
+</head>
+<body>
+    <title>간단한 계산기</title>
+<style>
+    .calculator {
+        width: 300px;
+        margin: 100px auto;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+    }
+    .calculator input {
+        width: 100%;
+        height: 50px;
+        text-align: right;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .calculator button {
+        width: 23%;
+        height: 50px;
+        font-size: 1.5rem;
+        margin: 5px 1%;
+        cursor: pointer;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+</head>
+<body onkeydown="handleKeyPress(event)">
+<div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="row">
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendOperator('+')">+</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendOperator('-')">-</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendOperator('*')">×</button>
+    </div>
+    <div class="row">
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendOperator('/')">÷</button>
+    </div>
+</div>
+<script>
+    let display = document.getElementById('display');
+    let currentExpression = '';
+    function appendNumber(number) {
+        currentExpression += number;
+        display.value = currentExpression;
+    }
+    function appendOperator(op) {
+        if (currentExpression === '' || /[+\-*/]$/.test(currentExpression)) {
+            return;
+        }
+        currentExpression += op;
+        display.value = currentExpression;
+    }
+    function calculate() {
+        try {
+            let result = eval(currentExpression.replace(/×/g, '*').replace(/÷/g, '/'));
+            display.value = result;
+            currentExpression = result.toString(); 
+        } catch (error) {
+            display.value = 'Error';
+            currentExpression = '';
+        }
+    }
+    function clearDisplay() {
+        currentExpression = '';
+        display.value = '';
+    }
+    function handleKeyPress(event) {
+        const key = event.key;
+        if (!isNaN(key)) {
+            appendNumber(key);
+        } else if (['+', '-', '*', '/'].includes(key)) {
+            appendOperator(key);
+        } else if (key === 'Enter') {
+            calculate();
+        } else if (key === 'Escape' || key === 'c' || key === 'C') {
+            clearDisplay();
+        }
+    }
+</script>
+</body>
+</html>
