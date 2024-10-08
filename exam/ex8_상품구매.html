@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 가격 계산</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            border: 4px solid #ccc;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .form-control {
+            font-size: 1em;
+            padding: 10px;
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+        .btn-group button {
+            width: 150px;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        .btn-price {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-vat {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-total {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .btn-save {
+            background-color: #ffc107;
+            color: black;
+        }
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-add-to-cart {
+            background-color: #ffc107;
+            color: black;
+        }
+        .btn-add-cart-navigate {
+            background-color: #dc3545;
+            color: white;
+        }
+        #result p {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .btn-right {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .cart-items {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .btn-remove {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 class="text-center" style="font-size: 2em;">상품 가격 계산</h2>
+        <form id="priceForm" class="mt-4">
+            <div class="form-group">
+                <label for="productName">상품명:</label>
+                <input type="text" id="productName" class="form-control" placeholder="상품명을 입력하세요" value="잠바">
+            </div>
+
+            <div class="form-group">
+                <label for="productSize">사이즈(단가):</label>
+                <select id="productSize" class="form-control">
+                    <option value="5000">S Size(5,000)</option>
+                    <option value="10000">M Size(10,000)</option>
+                    <option value="15000">L Size(15,000)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">수량(개):</label>
+                <input type="number" id="quantity" class="form-control" value="1" min="1">
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-price" onclick="calculatePrice()">가격</button>
+                <button type="button" class="btn btn-vat" onclick="calculateVAT()">VAT</button>
+                <button type="button" class="btn btn-total" onclick="calculateTotal()">총가격</button>
+                <button type="button" class="btn btn-save" onclick="saveSelection()">담아두기</button>
+                <button type="button" class="btn btn-cancel" onclick="cancelSelection()">취소</button>
+            </div>
+            <div class="btn-right">
+                <button type="button" class="btn btn-add-to-cart" onclick="addToCart()">장바구니</button>
+                <button type="button" class="btn btn-add-cart-navigate" onclick="clearCart()">장바구니네비우기</button>
+            </div>
+        </form>
+
+        <div id="result" class="mt-4">
+            <p>가격(단가 X 수량): <span id="totalPrice">0</span> 원</p>
+            <p>VAT(가격의 10%): <span id="vatPrice">0</span> 원</p>
+            <p>총 판매가격(VAT 포함): <span id="finalPrice">0</span> 원</p>
+        </div>
+
+        <div class="cart-items">
+            <h3>장바구니</h3>
+            <ul id="cartList"></ul>
+        </div>
+    </div>
+
+    <script>
+        let totalPrice = 0;
+        let vat = 0;
+        let finalPrice = 0;
+        let cart = [];
+        let savedSelections = [];
+
+        function calculatePrice() {
+            var price = parseInt(document.getElementById("productSize").value);
+            var quantity = parseInt(document.getElementById("quantity").value);
+            totalPrice = price * quantity;
+            document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
+        }
+
+        function calculateVAT() {
+            vat = totalPrice * 0.1;
+            document.getElementById("vatPrice").innerText = vat.toLocaleString();
+        }
+
+        function calculateTotal() {
+            finalPrice = totalPrice + vat;
+            document.getElementById("finalPrice").innerText = finalPrice.toLocaleString();
+        }
+
+        function saveSelection() {
+            var productName = document.getElementById("productName").value;
+            var productSize = document.getElementById("productSize").selectedOptions[0].text;
+            var quantity = document.getElementById("quantity").value;
+            var selection = {
+                name: productName,
+                size: productSize,
+                quantity: quantity,
+                price: finalPrice
+            };
+            savedSelections.push(selection);
+            alert("선택한 상품이 저장되었습니다.");
+        }
+
+        function cancelSelection() {
+            // Reset all values back to default
+            document.getElementById("productName").value = "";
+            document.getElementById("productSize").value = "5000"; // Default to S Size
+            document.getElementById("quantity").value = 1;
+            
+            // Reset the calculated fields
+            totalPrice = 0;
+            vat = 0;
+            finalPrice = 0;
+            document.getElementById("totalPrice").innerText = "0";
+            document.getElementById("vatPrice").innerText = "0";
+            document.getElementById("finalPrice").innerText = "0";
+        }
+
+        function addToCart() {
+            savedSelections.forEach(function(item) {
+                cart.push(item);
+            });
+            savedSelections = []; // Clear saved selections after adding to cart
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartList = document.getElementById("cartList");
+            cartList.innerHTML = ""; // Clear current cart items
+            cart.forEach(function(item, index) {
+                var li = document.createElement("li");
+                li.className = "cart-item";
+                li.innerHTML = `
+                    상품명: ${item.name}, 사이즈: ${item.size}, 수량: ${item.quantity}, 총가격: ${item.price.toLocaleString()} 원
+                    <button class="btn-remove" onclick="removeFromCart(${index})">비우기</button>
+                `;
+                cartList.appendChild(li);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+    </script>
+
+</body>
+</html>
